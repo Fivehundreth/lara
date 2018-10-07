@@ -37,7 +37,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $header = $request->get('post-header');
+        $content = $request->get('post-content');
+        $post = new Post;
+        $post->header = $header;
+        $post->body = $content;
+        $post->save();
     }
 
     /**

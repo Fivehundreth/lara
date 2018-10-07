@@ -9,18 +9,28 @@
         <title>Laravel with vue</title>
     </head>
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
+        <div class="container" id="app">
+            <div class="row header-row">
+                    <ul class="nav nav-tabs" id="navtab" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" id="nav-home" href="#home" data-toggle="tab" aria-controls="home" aria-selected="true">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-create-post" data-toggle="tab" aria-controls="create-post" aria-selected="false" href="#create-post">Create post</a></li>
+                    </ul>
+            </div>
+            <div class="tab-content" id="mainTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row posts-row">
+                        <h1>Recent posts</h1>
+                        <post-component
+                                v-for="post in posts"
+                                v-bind:key="post.id"
+                                v-bind:header="post.header"
+                                v-bind:body="post.body"
+                        ></post-component>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="create-post" role="tabpanel" aria-labelledby="create-post">
                     <div class="row">
-                        <div id="app">
-                            <post-component
-                                    v-for="post in posts"
-                                    v-bind:key="post.id"
-                                    v-bind:header="post.header"
-                                    v-bind:body="post.body"
-                            ></post-component>
-                        </div>
+                        <create-post-component></create-post-component>
                     </div>
                 </div>
             </div>
